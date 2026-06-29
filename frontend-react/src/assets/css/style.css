@@ -1,0 +1,29 @@
+body{
+
+background:#0f172a;
+
+color:#ffffff;
+
+font-family:'Poppins',sans-serif;
+
+}
+
+.bg-light-dark{
+
+background:#1e293b !important;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+
+}
+
+/*.container{
+
+flex:1;
+
+}*/
+
+#root{
+    min-height:100vh;
+}
