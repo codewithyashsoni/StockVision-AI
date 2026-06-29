@@ -11,9 +11,6 @@ from datetime import datetime
 import os
 from django.conf import settings
 from .utils import save_plot
-from sklearn.preprocessing import MinMaxScaler
-from keras.models import load_model
-from sklearn.metrics import mean_squared_error, r2_score
 
 plt.style.use("dark_background")
 plt.rcParams["font.family"] = "DejaVu Sans"
@@ -149,6 +146,10 @@ class StockPredictionAPIView(APIView):
             data_testing = pd.DataFrame(df.Close[int(len(df)*0.7): int(len(df))])
 
             # Scaling down the data between 0 and 1
+            from sklearn.preprocessing import MinMaxScaler
+            from keras.models import load_model
+            from sklearn.metrics import mean_squared_error, r2_score
+            
             scaler = MinMaxScaler(feature_range=(0,1))
 
             # Load ML Model
