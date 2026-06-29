@@ -14,15 +14,13 @@ from .utils import save_plot
 from sklearn.preprocessing import MinMaxScaler
 from keras.models import load_model
 from sklearn.metrics import mean_squared_error, r2_score
+
 plt.style.use("dark_background")
-
 plt.rcParams["font.family"] = "DejaVu Sans"
-
 plt.rcParams["figure.dpi"] = 220
 
 def dark_theme(ax):
     ax.set_facecolor("#1E293B")
-
     ax.grid(
         True,
         color="#334155",
@@ -30,7 +28,6 @@ def dark_theme(ax):
         linewidth=0.5,
         alpha=0.35
     )
-
     ax.tick_params(colors="white", labelsize=10)
 
     ax.xaxis.label.set_color("white")
@@ -81,11 +78,8 @@ class StockPredictionAPIView(APIView):
                 label="Closing Price"
             )
             ax.set_title(f"Closing Price of {ticker}", fontsize=15, weight="bold")
-
             ax.set_xlabel("Days")
-
             ax.set_ylabel("Price")
-
             dark_theme(ax)
             # Save the plot to a file
             plt.tight_layout()
@@ -95,82 +89,59 @@ class StockPredictionAPIView(APIView):
             # 100 Days moving average
 
             ma100 = df.Close.rolling(100).mean()
-
             plt.switch_backend('AGG')
-
             fig, ax = plt.subplots(figsize=(12,5))
-
             fig.patch.set_facecolor("#0F172A")
-
             ax.plot(
                 df.Close,
                 color="#38BDF8",
                 linewidth=2.5,
                 label="Closing Price"
             )
-
             ax.plot(
                 ma100,
                 color="#F59E0B",
                 linewidth=2.2,
                 label="100 DMA"
             )
-
             ax.set_title(f"100 Day Moving Average - {ticker}", fontsize=15, weight="bold")
-
             ax.set_xlabel("Days")
-
             ax.set_ylabel("Price")
-
             dark_theme(ax)
             plt.tight_layout()
-
             plot_img_path = f"{ticker}_100_dma.png"
-
             plot_100_dma = save_plot(plot_img_path)
 
             # 200 Days moving average
 
             ma200 = df.Close.rolling(200).mean()
-
             plt.switch_backend('AGG')
-
             fig, ax = plt.subplots(figsize=(12,5))
-
             fig.patch.set_facecolor("#0F172A")
-
             ax.plot(
                 df.Close,
                 color="#38BDF8",
                 linewidth=2.5,
                 label="Closing Price"
             )
-
             ax.plot(
                 ma100,
                 color="#F59E0B",
                 linewidth=2.2,
                 label="100 DMA"
             )
-
             ax.plot(
                 ma200,
                 color="#EF4444",
                 linewidth=2.2,
                 label="200 DMA"
             )
-
             ax.set_title(f"200 Day Moving Average - {ticker}", fontsize=15, weight="bold")
-
             ax.set_xlabel("Days")
-
             ax.set_ylabel("Price")
-
             dark_theme(ax)
             plt.tight_layout()
-
             plot_img_path = f"{ticker}_200_dma.png"
-
             plot_200_dma = save_plot(plot_img_path)
 
             # Splitting data into Training & Testing datasets
@@ -205,36 +176,26 @@ class StockPredictionAPIView(APIView):
             # Plot the final prediction
 
             plt.switch_backend('AGG')
-
             fig, ax = plt.subplots(figsize=(12,5))
-
             fig.patch.set_facecolor("#0F172A")
-
             ax.plot(
                 y_test,
                 color="#38BDF8",
                 linewidth=2.5,
                 label="Actual Price"
             )
-
             ax.plot(
                 y_predicted,
                 color="#FACC15",
                 linewidth=2.5,
                 label="Predicted Price"
             )
-
             ax.set_title(f"AI Prediction - {ticker}", fontsize=15, weight="bold")
-
             ax.set_xlabel("Days")
-
             ax.set_ylabel("Price")
-
             dark_theme(ax)
             plt.tight_layout()
-
             plot_img_path = f"{ticker}_final_prediction.png"
-
             plot_prediction = save_plot(plot_img_path)
 
             # Model Evaluation
