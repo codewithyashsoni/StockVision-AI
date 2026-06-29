@@ -20,7 +20,7 @@ const Register = () => {
     }
     
     try{
-      const response = await axios.post('http://127.0.0.1:8000/api/v1/register/', userData)
+      const response = await axios.post('https://stockvision-ai-backend.onrender.com/api/v1/register/', userData)
       console.log('response.data==>', response.data)
       console.log('Registration successful');
       setErrors({})
