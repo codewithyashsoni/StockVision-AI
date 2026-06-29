@@ -30,7 +30,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    ".onrender.com",
+    "stockvision-ai-backend.onrender.com",
 ]
 
 
@@ -138,6 +138,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://stock-vision-ai-sigma.vercel.app"
 ]
 
 REST_FRAMEWORK = {
