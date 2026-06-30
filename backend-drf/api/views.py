@@ -153,7 +153,13 @@ class StockPredictionAPIView(APIView):
             scaler = MinMaxScaler(feature_range=(0,1))
 
             # Load ML Model
-            model = load_model('stock_prediction_model.keras')
+            from pathlib import Path
+
+            model_path = Path(__file__).resolve().parent.parent / "stock_prediction_model.keras"
+            print("Model path:", model_path)
+            print("Model exists:", model_path.exists())
+
+            model = load_model(model_path)
 
             # Preparing Test Data
             past_100_days = data_training.tail(100)
